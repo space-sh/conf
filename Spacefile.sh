@@ -68,7 +68,7 @@ clone string
 CONF_READ()
 {
     SPACE_SIGNATURE="conffile keys"
-    SPACE_CMDDEP="PRINT"
+    SPACE_CMDDEP="PRINT STRING_TRIM"
 
     local conffile="${1}"
     shift
@@ -84,40 +84,47 @@ CONF_READ()
     local _lineno=${conf_lineno:-0}
     local _currentno=-1
     local line=
-    while IFS='' read -r line; do
-        _currentno="$((_currentno + 1))"
-        if [ "${_currentno}" -lt "${_lineno}" ]; then
-            # Burn some lines
-            continue
-        fi
-        # See if this line is anything good.
-        STRING_TRIM "line"
-        if [ "${line##\#*}" = "" ]; then
-            # Is comment line.
-            continue
-        fi
-        local val="${line#*[\ ]}"
-        local key="${line%%${val}}"
-        STRING_TRIM "val"
-        STRING_TRIM "key"
-        # Check if the key is in the list.
-        local _okkey=
-        while true; do
-            for _okkey in ${keys}; do
-                if [ "${_okkey}" = "${key}" ]; then
-                    break 2
-                fi
+    while true; do
+        while IFS='' read -r line; do
+            _currentno="$((_currentno + 1))"
+            if [ "${_currentno}" -lt "${_lineno}" ]; then
+                # Burn some lines
+                continue
+            fi
+            # See if this line is anything good.
+            STRING_TRIM "line"
+            if [ "${line##\#*}" = "" ]; then
+                # Is comment line.
+                continue
+            fi
+            local val="${line#*[\ ]}"
+            local key="${line%%${val}}"
+            STRING_TRIM "val"
+            STRING_TRIM "key"
+            # Check if the key is in the list.
+            local _okkey=
+            while true; do
+                for _okkey in ${keys}; do
+                    if [ "${_okkey}" = "${key}" ]; then
+                        break 2
+                    fi
+                done
+                    continue 2
             done
-                continue 2
-        done
 
-        if eval "[ \"\${${key}:-unset}\" = \"unset\" ]"; then
-            eval "${key}=\"\${val}\""
-        else
-            # Do not overwrite a value, it's time to stop.
-            break
-        fi
-    done < "${conffile}"
+            if eval "[ \"\${${key}:-unset}\" = \"unset\" ]"; then
+                eval "${key}=\"\${val}\""
+            else
+                # Do not overwrite a value, it's time to stop.
+                break 2
+            fi
+        done < "${conffile}"
+        # If we get here then we have read all the file,
+        # we'll signal that we are done by resetting the $conf_lineno variable.
+        conf_lineno=0
+        return 0
+    done
+    # We come here when a "block" has been read, but there's still more to come.
 
     # If this was not declared as local with caller,
     # then it becomes a global variable.
