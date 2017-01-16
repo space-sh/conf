@@ -16,6 +16,10 @@
 
 clone string
 
+
+# Disable warning about local keyword
+# shellcheck disable=SC2039
+
 #======================
 # CONF_READ
 #
@@ -67,8 +71,8 @@ clone string
 #======================
 CONF_READ()
 {
-    SPACE_SIGNATURE="conffile keys"
-    SPACE_DEP="PRINT STRING_TRIM"
+    SPACE_SIGNATURE="conffile keys"     # shellcheck disable=2034
+    SPACE_DEP="PRINT STRING_TRIM"       # shellcheck disable=2034
 
     local conffile="${1}"
     shift
@@ -130,3 +134,4 @@ CONF_READ()
     # then it becomes a global variable.
     conf_lineno="${_currentno}"
 }
+
