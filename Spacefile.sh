@@ -28,7 +28,7 @@ clone string
 # The conf file should look like:
 #   name    Giganticus
 #   animal  Octopus (Enteroctopus membranaceus)
-#   # Comments on seperate lines are OK.
+#   # Comments on separate lines are OK.
 #   name    Speedy Rooster
 #   animal  Chicken (Gallus gallus)
 #
@@ -59,7 +59,7 @@ clone string
 #   $2: variable names allowed
 #
 # Expects:
-#   $conf_lineno: should have deen declared = 0.
+#   $conf_lineno: should have been declared = 0.
 #   $keys: Variable names defined in $2 should
 #       prior have been initialized and set to
 #       empty, like "local name=".
