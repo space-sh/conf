@@ -26,20 +26,18 @@ clone string
 # Read and parse a conf file.
 #
 # The conf file should look like:
+#   ```
 #   name    Giganticus
 #   animal  Octopus (Enteroctopus membranaceus)
 #   # Comments on separate lines are OK.
 #   name    Speedy Rooster
 #   animal  Chicken (Gallus gallus)
+#   ```
 #
-# It will stop reading when an already set
-# variable is encountered again, this is the
-# signal that conf has read "one block".
+# It will stop reading when an already set variable is encountered again, this is the signal that conf has read "one block".
 #
-# $conf_lineno will be updated so the next
-# time you call CONF_READ you will get the next
-# "block". Remember to reset all variables first,
-# otherwise it won't read new lines.
+# $conf_lineno will be updated so the next time you call CONF_READ you will get the next "block".
+# Remember to reset all variables first, otherwise it won't read new lines.
 #
 # Example:
 #   local conf_lineno=0  # Only done once.
@@ -60,9 +58,7 @@ clone string
 #
 # Expects:
 #   $conf_lineno: should have been declared = 0.
-#   $keys: Variable names defined in $2 should
-#       prior have been initialized and set to
-#       empty, like "local name=".
+#   $keys: Variable names defined in $2 should prior have been initialized and set to empty, like "local name=".
 #
 # Returns:
 #   0: success
