@@ -68,7 +68,7 @@ clone string
 CONF_READ()
 {
     SPACE_SIGNATURE="conffile keys"
-    SPACE_CMDDEP="PRINT STRING_TRIM"
+    SPACE_DEP="PRINT STRING_TRIM"
 
     local conffile="${1}"
     shift
