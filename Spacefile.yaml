@@ -22,5 +22,4 @@ _dep_install:
     _info:
         title: Verify dependencies for this module.
     _env:
-        - CMD: :
-
+        - RUN: :

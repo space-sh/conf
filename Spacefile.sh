@@ -130,4 +130,3 @@ CONF_READ()
     # then it becomes a global variable.
     conf_lineno="${_currentno}"
 }
-
