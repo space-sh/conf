@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-clone string
-
-
 # Disable warning about local keyword
 # shellcheck disable=SC2039
 
