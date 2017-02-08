@@ -27,7 +27,7 @@
 #   name    Giganticus
 #   animal  Octopus (Enteroctopus membranaceus)
 #   # Comments on separate lines are OK.
-#   name    Speedy Rooster
+#   name    Astro Chicken
 #   animal  Chicken (Gallus gallus)
 #   ```
 #
@@ -35,6 +35,7 @@
 #
 # $conf_lineno will be updated so the next time you call CONF_READ you will get the next "block".
 # Remember to reset all variables first, otherwise it won't read new lines.
+# $conf_lineno will be set to -1 when no more lines could be read.
 #
 # Example:
 #   local conf_lineno=0  # Only done once.
@@ -106,10 +107,11 @@ CONF_READ()
                         break 2
                     fi
                 done
+                    # Key not in list, skip it and continue reading file.
                     continue 2
             done
 
-            if eval "[ \"\${${key}:-unset}\" = \"unset\" ]"; then
+            if eval "[ \"\${${key}:+set}\" != \"set\" ]"; then
                 eval "${key}=\"\${val}\""
             else
                 # Do not overwrite a value, it's time to stop.
@@ -117,11 +119,11 @@ CONF_READ()
             fi
         done < "${conffile}"
         # If we get here then we have read all the file,
-        # we'll signal that we are done by resetting the $conf_lineno variable.
-        conf_lineno=0
+        # we'll signal that we are done by setting the $conf_lineno variable to -1.
+        conf_lineno="-1"
         return 0
     done
-    # We come here when a "block" has been read, but there's still more to come.
+    # We come here when a "block" has been read, but there could still be more to come.
 
     # If this was not declared as local with caller,
     # then it becomes a global variable.
