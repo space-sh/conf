@@ -14,7 +14,7 @@ The conf file should look like:
 name    Giganticus  
 animal  Octopus (Enteroctopus membranaceus)  
 Comments on separate lines are OK.  
-name    Speedy Rooster  
+name    Astro Chicken  
 animal  Chicken (Gallus gallus)  
 ```  
   
@@ -22,18 +22,19 @@ It will stop reading when an already set variable is encountered again, this is 
   
 $conf\_lineno will be updated so the next time you call CONF\_READ you will get the next "block".  
 Remember to reset all variables first, otherwise it won't read new lines.  
+$conf\_lineno will be set to -1 when no more lines could be read.  
   
 ### Example:  
-` local conf\_lineno0   Only done once. `  
+` local conf_lineno0   Only done once. `  
 ` local name `  
 ` local animal `  
-` CONF\_READ "/tmp/my.conf" "name animal" `  
+` CONF_READ "/tmp/my.conf" "name animal" `  
 ` echo "${name} is a ${animal}." `  
   
 ` Read next block `  
 ` local name `  
 ` local animal `  
-` CONF\_READ "/tmp/my.conf" "name animal" `  
+` CONF_READ "/tmp/my.conf" "name animal" `  
 ` echo "${name} is a ${animal}." `  
   
 ### Parameters:  
