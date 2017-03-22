@@ -1,8 +1,15 @@
 ---
+modulename: Conf
 title: Overview
 giturl: gitlab.com/space-sh/conf
 weight: 100
 ---
-# SpaceGal shell - Conf module
+# Conf module
 
-The Conf Module deals with various configuration files.
+The _Conf_ Module deals with loading and parsing of configuration files.
+
+
+## Dependencies
+
+Modules:  
++ string  
