@@ -65,7 +65,7 @@
 #======================
 CONF_READ()
 {
-    SPACE_SIGNATURE="conffile keys"     # shellcheck disable=2034
+    SPACE_SIGNATURE="conffile:1 keys:1"     # shellcheck disable=2034
     SPACE_DEP="PRINT STRING_TRIM"       # shellcheck disable=2034
 
     local conffile="${1}"

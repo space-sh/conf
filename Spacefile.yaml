@@ -15,7 +15,10 @@
 #
 #
 ---
-@clone: string
+_clone:
+    @clone: string
+    @include: string|/_clone/
+@include: |/_clone/
 
 _info:
     title: Conf module
