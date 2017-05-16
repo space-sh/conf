@@ -33,12 +33,12 @@
 #
 # It will stop reading when an already set variable is encountered again, this is the signal that conf has read "one block".
 #
-# $conf_lineno will be updated so the next time you call CONF_READ you will get the next "block".
+# $out_conf_lineno will be updated so the next time you call CONF_READ you will get the next "block".
 # Remember to reset all variables first, otherwise it won't read new lines.
-# $conf_lineno will be set to -1 when no more lines could be read.
+# $out_conf_lineno will be set to -1 when no more lines could be read.
 #
 # Example:
-#   local conf_lineno=0  # Only done once.
+#   local out_conf_lineno=0  # Only done once.
 #   local name=
 #   local animal=
 #   CONF_READ "/tmp/my.conf" "name animal"
@@ -55,7 +55,7 @@
 #   $2: variable names allowed
 #
 # Expects:
-#   $conf_lineno: should have been declared = 0.
+#   $out_conf_lineno: should have been declared = 0.
 #   $keys: Variable names defined in $2 should prior have been initialized and set to empty, like "local name=".
 #
 # Returns:
@@ -79,7 +79,7 @@ CONF_READ()
         return 1
     fi
 
-    local _lineno=${conf_lineno:-0}
+    local _lineno=${out_conf_lineno:-0}
     local _currentno=-1
     local line=
     while true; do
@@ -119,13 +119,13 @@ CONF_READ()
             fi
         done < "${conffile}"
         # If we get here then we have read all the file,
-        # we'll signal that we are done by setting the $conf_lineno variable to -1.
-        conf_lineno="-1"
+        # we'll signal that we are done by setting the $out_conf_lineno variable to -1.
+        out_conf_lineno="-1"
         return 0
     done
     # We come here when a "block" has been read, but there could still be more to come.
 
     # If this was not declared as local with caller,
     # then it becomes a global variable.
-    conf_lineno="${_currentno}"
+    out_conf_lineno="${_currentno}"
 }
