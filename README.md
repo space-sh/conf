@@ -20,12 +20,12 @@ animal  Chicken (Gallus gallus)
   
 It will stop reading when an already set variable is encountered again, this is the signal that conf has read "one block".  
   
-$conf\_lineno will be updated so the next time you call CONF\_READ you will get the next "block".  
+$out\_conf\_lineno will be updated so the next time you call CONF\_READ you will get the next "block".  
 Remember to reset all variables first, otherwise it won't read new lines.  
-$conf\_lineno will be set to -1 when no more lines could be read.  
+$out\_conf\_lineno will be set to -1 when no more lines could be read.  
   
 ### Example:  
-` local conf_lineno0   Only done once. `  
+` local out_conf_lineno0   Only done once. `  
 ` local name `  
 ` local animal `  
 ` CONF_READ "/tmp/my.conf" "name animal" `  
@@ -42,7 +42,7 @@ $conf\_lineno will be set to -1 when no more lines could be read.
 - $2: variable names allowed  
   
 ### Expects:  
-- $conf\_lineno: should have been declared  0.  
+- $out\_conf\_lineno: should have been declared  0.  
 - $keys: Variable names defined in $2 should prior have been initialized and set to empty, like "local name".  
   
 ### Returns:  
