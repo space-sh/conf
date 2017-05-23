@@ -2,6 +2,7 @@
 modulename: Conf
 title: Overview
 giturl: gitlab.com/space-sh/conf
+editurl: /edit/master/doc/index.md
 weight: 100
 ---
 # Conf module
