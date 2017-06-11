@@ -1,5 +1,10 @@
 # Space Module change log - conf
 
+## [1.0.3 - 2017-06-11]
+
+* Update documentation
+
+
 ## [1.0.2 - 2017-05-16]
 
 * Rename expected local OUT variables
