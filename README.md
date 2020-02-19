@@ -1,4 +1,4 @@
-# Conf module | [![build status](https://gitlab.com/space-sh/conf/badges/master/build.svg)](https://gitlab.com/space-sh/conf/commits/master)
+# Conf module | [![build status](https://gitlab.com/space-sh/conf/badges/master/pipeline.svg)](https://gitlab.com/space-sh/conf/commits/master)
 
 
 # Functions 
