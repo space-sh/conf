@@ -1,5 +1,10 @@
 # Space Module change log - conf
 
+## [1.0.4 - 2020-04-08]
+
+* Bump version for Space major version 1
+
+
 ## [1.0.3 - 2017-06-11]
 
 * Update documentation
