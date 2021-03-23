@@ -16,8 +16,8 @@
 #
 ---
 _clone:
-    @clone: string
-    @include: string|/_clone/
+    @clone: string:1.4.0
+    @include: string:1.4.0|/_clone/
 @include: |/_clone/
 
 _info:
